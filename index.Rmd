@@ -1,6 +1,6 @@
 ---
 title: "Gov 50 Final Project"
-author: "Your Name Here"
+author: "Paula Barberi"
 description: "My final project"
 output:
   distill::distill_article:
@@ -11,4 +11,4 @@ output:
 
 ## Project thoughts
 
-I am interested in exploring data related to...
+I am interested in exploring data related to emergency homeless shelters in Boston, MA or a city in my home state of Michigan. More specifically, I'd like to examine the relationship between demographic factors like gender and age with utilization of the shelter and how that compares with the published demographic data of those experiencing homelessness in the area. I'd heard that the numbers of young adults experiencing homelessness in my hometown is increasing, but at the same time, there are no young adult homeless shelters that I know of. In Cambridge/Boston, there are only a few shelters that specifically serve young adults. I may need to shift my questions as I figure out what data is publicly accessible, but at the very least I know the topics I would like to research more. 
