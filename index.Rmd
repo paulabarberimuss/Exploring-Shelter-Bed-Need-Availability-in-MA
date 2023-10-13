@@ -1,7 +1,7 @@
 ---
 title: "Gov 50 Final Project"
 author: "Paula Barberi"
-description: "My final project"
+description: "Homelessness and Shelter Bed Availability"
 output:
   distill::distill_article:
     self_contained: false
@@ -9,6 +9,12 @@ output:
 
 
 
-## Project thoughts
+## Final Project Milestone 1: Project Thoughts
 
 I am interested in exploring data related to emergency homeless shelters in Boston, MA or a city in my home state of Michigan. More specifically, I'd like to examine the relationship between demographic factors like gender and age with utilization of the shelter and how that compares with the published demographic data of those experiencing homelessness in the area. I'd heard that the numbers of young adults experiencing homelessness in my hometown is increasing, but at the same time, there are no young adult homeless shelters that I know of. In Cambridge/Boston, there are only a few shelters that specifically serve young adults. I may need to shift my questions as I figure out what data is publicly accessible, but at the very least I know the topics I would like to research more. 
+
+## Final Project Milestone 2: Project Proposal
+
+It has been reported repeatedly that America's homelessness and housing crises are on the rise, but how have homeless shelters changed as a result? Has shelter bed availability risen as well? In this study, I plan to examine how reported shelter bed availability in the United States has changed (or not) as the prevalence of homelessness has changed between the years of 2007 and 2022. Homelessness is incredibly stigmatized in this country and research has shown how discrimination against unhoused people has limited their political, econonomic, and social rights. A National Homelessness Law Center report found that between 2006 and 2019, city-wide bans on camping increased by more than 90%, and this is just one example of how homelessness is criminalized. Considering the abundance of anti-homelessness attitudes and legislation, I hypothesize that as the prevalence of homelessness has grown, especially in the past decade, shelter bed availability has not increased to the same extent. 
+
+I still need to select a particular CoC type for my unit of analysis. Through the Department of Housing and Urban Development (HUD), different geographic areas in the United States are identified as a particular CoC (a Continuum of Care), which is a regional group that coordinates housing and services funding for unhoused families and individuals as prescribed by the HUD CoC policies. There are different CoC types, for example, "Largely Rural", "Major City", "Largely Suburban" etc. The explanatory variable of interest is the proportion of the population that is considered to be homeless and the outcome variable is the number of available shelter beds for that same year. This data will come from a merging of two of HUD's datasets focusing on Point in Time and Housing in Time counts for CoCs between the years of 2007 and 2022. As mentioned earlier, the CoC type is determined and defined by HUD. If I observe that the number of available shelter beds does not increase (remains similar or decreases) when the prevalence of homelessness increases, this would provide support for my hypothesis. If I observe that the number of available shelter beds increases as the prevalence of homelessness increases, this would provide support against my hypothesis. 
