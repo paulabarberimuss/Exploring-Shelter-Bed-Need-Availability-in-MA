@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.25/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/datavisualization-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.25/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1522,7 +1522,53 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h2 id="final-project-milestone-2-project-proposal">Final Project Milestone 2: Project Proposal</h2>
 <p>It has been reported repeatedly that America’s homelessness and housing crises are on the rise, but how have homeless shelters changed as a result? Has shelter bed availability risen as well? In this study, I plan to examine how reported shelter bed availability in the United States has changed (or not) as the prevalence of homelessness has changed between the years of 2007 and 2022. Homelessness is incredibly stigmatized in this country and research has shown how discrimination against unhoused people has limited their political, econonomic, and social rights. A National Homelessness Law Center report found that between 2006 and 2019, city-wide bans on camping increased by more than 90%, and this is just one example of how homelessness is criminalized. Considering the abundance of anti-homelessness attitudes and legislation, I hypothesize that as the prevalence of homelessness has grown, especially in the past decade, shelter bed availability has not increased to the same extent.</p>
 <p>I still need to select a particular CoC type for my unit of analysis. Through the Department of Housing and Urban Development (HUD), different geographic areas in the United States are identified as a particular CoC (a Continuum of Care), which is a regional group that coordinates housing and services funding for unhoused families and individuals as prescribed by the HUD CoC policies. There are different CoC types, for example, “Largely Rural”, “Major City”, “Largely Suburban” etc. The explanatory variable of interest is the proportion of the population that is considered to be homeless and the outcome variable is the number of available shelter beds for that same year. This data will come from a merging of two of HUD’s datasets focusing on Point in Time and Housing in Time counts for CoCs between the years of 2007 and 2022. As mentioned earlier, the CoC type is determined and defined by HUD. If I observe that the number of available shelter beds does not increase (remains similar or decreases) when the prevalence of homelessness increases, this would provide support for my hypothesis. If I observe that the number of available shelter beds increases as the prevalence of homelessness increases, this would provide support against my hypothesis.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="final-project-milestone-3-data-visualization">Final Project Milestone 3: Data Visualization</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#load PIT data</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readxl.tidyverse.org'>readxl</a></span><span class='op'>)</span></span>
+<span><span class='va'>unhoused</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readxl.tidyverse.org/reference/read_excel.html'>read_excel</a></span><span class='op'>(</span><span class='st'>"~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx"</span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#rename variable</span></span>
+<span><span class='va'>unhoused1</span> <span class='op'>&lt;-</span> <span class='va'>unhoused</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>coc_category <span class='op'>=</span> <span class='va'>`CoC Category`</span>,</span>
+<span>         overall_homeless_2022 <span class='op'>=</span> <span class='va'>`Overall Homeless, 2022`</span>,</span>
+<span>         es_homeless_2022 <span class='op'>=</span> <span class='va'>`Sheltered ES Homeless, 2022`</span>,</span>
+<span>         prop_es_overall_homeless_2022 <span class='op'>=</span> <span class='va'>`Sheltered ES Homeless, 2022`</span><span class='op'>/</span><span class='va'>`Overall Homeless, 2022`</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'>#find unique CoC categories</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>unhoused1</span><span class='op'>$</span><span class='va'>coc_category</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;Other Largely Urban CoC&quot; &quot;Largely Rural CoC&quot;      
+[3] &quot;Largely Suburban CoC&quot;    &quot;Major City CoC&quot;         
+[5] NA                       </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#group data</span></span>
+<span><span class='va'>unhoused2</span> <span class='op'>&lt;-</span> <span class='va'>unhoused1</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>coc_category</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>avg_prop_es_overall <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>prop_es_overall_homeless_2022</span><span class='op'>)</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='fu'><a href='https://rdrr.io/r/stats/na.fail.html'>na.omit</a></span><span class='op'>(</span><span class='va'>coc_category</span><span class='op'>)</span><span class='op'>)</span> </span>
+<span></span>
+<span><span class='co'>#wrangle data</span></span>
+<span><span class='va'>unhoused2_visual</span> <span class='op'>&lt;-</span> <span class='va'>unhoused2</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>coc_category</span>, y <span class='op'>=</span> <span class='va'>avg_prop_es_overall</span>, fill<span class='op'>=</span><span class='va'>coc_category</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html'>scale_fill_discrete</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/lims.html'>ylim</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>1</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>axis.text.x <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>7</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"HUD CoC Category"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"Avg. Proportion of Unhoused in ES"</span>,</span>
+<span>       title <span class='op'>=</span> <span class='st'>"Average Proportion of Unhoused in Emergency Shelters by CoC"</span>,</span>
+<span>       caption <span class='op'>=</span> <span class='st'>"Data from HUD 2022 Point in Time Counts"</span><span class='op'>)</span></span>
+<span><span class='va'>unhoused2_visual</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/datavisualization-1.png" width="624" /></p>
+</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

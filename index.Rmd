@@ -24,7 +24,6 @@ I still need to select a particular CoC type for my unit of analysis. Through th
 #load PIT data
 library(readxl)
 unhoused <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx")
-View(PIT_overall_homeless)
 library(tidyverse)
 library(ggplot2)
 ```
