@@ -18,3 +18,44 @@ I am interested in exploring data related to emergency homeless shelters in Bost
 It has been reported repeatedly that America's homelessness and housing crises are on the rise, but how have homeless shelters changed as a result? Has shelter bed availability risen as well? In this study, I plan to examine how reported shelter bed availability in the United States has changed (or not) as the prevalence of homelessness has changed between the years of 2007 and 2022. Homelessness is incredibly stigmatized in this country and research has shown how discrimination against unhoused people has limited their political, econonomic, and social rights. A National Homelessness Law Center report found that between 2006 and 2019, city-wide bans on camping increased by more than 90%, and this is just one example of how homelessness is criminalized. Considering the abundance of anti-homelessness attitudes and legislation, I hypothesize that as the prevalence of homelessness has grown, especially in the past decade, shelter bed availability has not increased to the same extent. 
 
 I still need to select a particular CoC type for my unit of analysis. Through the Department of Housing and Urban Development (HUD), different geographic areas in the United States are identified as a particular CoC (a Continuum of Care), which is a regional group that coordinates housing and services funding for unhoused families and individuals as prescribed by the HUD CoC policies. There are different CoC types, for example, "Largely Rural", "Major City", "Largely Suburban" etc. The explanatory variable of interest is the proportion of the population that is considered to be homeless and the outcome variable is the number of available shelter beds for that same year. This data will come from a merging of two of HUD's datasets focusing on Point in Time and Housing in Time counts for CoCs between the years of 2007 and 2022. As mentioned earlier, the CoC type is determined and defined by HUD. If I observe that the number of available shelter beds does not increase (remains similar or decreases) when the prevalence of homelessness increases, this would provide support for my hypothesis. If I observe that the number of available shelter beds increases as the prevalence of homelessness increases, this would provide support against my hypothesis. 
+
+## Final Project Milestone 3: Data Visualization
+```{r, background}
+#load PIT data
+library(readxl)
+unhoused <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx")
+View(PIT_overall_homeless)
+library(tidyverse)
+library(ggplot2)
+```
+
+
+```{r, datavisualization}
+#rename variable
+unhoused1 <- unhoused |>
+  mutate(coc_category = `CoC Category`,
+         overall_homeless_2022 = `Overall Homeless, 2022`,
+         es_homeless_2022 = `Sheltered ES Homeless, 2022`,
+         prop_es_overall_homeless_2022 = `Sheltered ES Homeless, 2022`/`Overall Homeless, 2022`)
+
+#find unique CoC categories
+unique(unhoused1$coc_category)
+
+#group data
+unhoused2 <- unhoused1 |>
+  group_by(coc_category) |>
+  summarize(avg_prop_es_overall = mean(prop_es_overall_homeless_2022), na.rm = TRUE, na.omit(coc_category)) 
+
+#wrangle data
+unhoused2_visual <- unhoused2 |>
+  ggplot(mapping = aes(x = coc_category, y = avg_prop_es_overall, fill=coc_category)) +
+  geom_col() +
+  scale_fill_discrete() +
+  ylim(0,1) +
+  theme(axis.text.x = element_text(size = 7)) +
+  labs(x = "HUD CoC Category",
+       y = "Avg. Proportion of Unhoused in ES",
+       title = "Average Proportion of Unhoused in Emergency Shelters by CoC",
+       caption = "Data from HUD 2022 Point in Time Counts")
+unhoused2_visual
+```
