@@ -29,6 +29,7 @@ library(ggplot2)
 ```
 
 
+
 ```{r, datavisualization}
 #rename variable
 unhoused1 <- unhoused |>
@@ -58,3 +59,94 @@ unhoused2_visual <- unhoused2 |>
        caption = "Data from HUD 2022 Point in Time Counts")
 unhoused2_visual
 ```
+
+## Final Project Milestone 4: Data Visualization
+
+```{r, PIT_background}
+library(tidyverse)
+library("readxl")
+#created df for each year of PIT Counts by CoC
+unhoused2022 <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx", sheet = 1)
+unhoused2021 <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx", sheet = 2)
+unhoused2020 <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx", sheet = 3)
+unhoused2019 <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx", sheet = 4)
+unhoused2018 <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx", sheet = 5)
+unhoused2017 <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx", sheet = 6)
+unhoused2016 <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx", sheet = 7)
+unhoused2015 <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx", sheet = 8)
+unhoused2014 <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx", sheet = 9)
+unhoused2013 <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx", sheet = 10)
+unhoused2012 <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx", sheet = 11)
+unhoused2011 <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx", sheet = 12)
+unhoused2010 <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx", sheet = 13)
+unhoused2009 <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx", sheet = 14)
+unhoused2008 <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx", sheet = 15)
+unhoused2007 <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx", sheet = 16)
+#create list for 2007-2022 df
+unhoused2007_2022 <- list(unhoused2022, unhoused2021, unhoused2020, unhoused2019, unhoused2018, unhoused2017, unhoused2016, unhoused2015, unhoused2014, unhoused2013, unhoused2012, unhoused2011, unhoused2010, unhoused2009, unhoused2008, unhoused2007)
+```
+
+```{r, PIT_merged_df}
+#drop unnecessary columns from 2007-2022 PIT list 
+shortened_unhoused <- lapply(unhoused2007_2022, function(dataset) dataset[, 1:3, drop = FALSE])
+
+#create merged dataset for 2022-2007 and drop "duplicate" NA columns
+main_unhoused_long <- shortened_unhoused |>
+  reduce(inner_join, by = c("CoC Number"))
+main_unhoused <- main_unhoused_long |>
+  filter(`CoC Number` != "NA")
+
+#code for checking duplicated values
+
+
+```
+
+```{r, PIT_visualization}
+main_unhoused_city <- main_unhoused |>
+  filter(`CoC Category` == "Major City CoC") |>
+  summarize(avg_unhoused_2021 = mean(`Overall Homeless, 2021`),
+            avg_unhoused_2020 = mean(`Overall Homeless, 2020`),
+            avg_unhoused_2019 = mean(`Overall Homeless, 2019`),
+            avg_unhoused_2018 = mean(`Overall Homeless, 2018`),
+            avg_unhoused_2017 = mean(`Overall Homeless, 2017`),
+            avg_unhoused_2016 = mean(`Overall Homeless, 2016`),
+            avg_unhoused_2015 = mean(`Overall Homeless, 2015`),
+            avg_unhoused_2014 = mean(`Overall Homeless, 2014`),
+            avg_unhoused_2013 = mean(`Overall Homeless, 2013`),
+            avg_unhoused_2012 = mean(`Overall Homeless, 2012`),
+            avg_unhoused_2011 = mean(`Overall Homeless, 2011`),
+            avg_unhoused_2010 = mean(`Overall Homeless, 2010`),
+            avg_unhoused_2009 = mean(`Overall Homeless, 2009`),
+            avg_unhoused_2008 = mean(`Overall Homeless, 2008`),
+            avg_unhoused_2007 = mean(`Overall Homeless, 2007`)) 
+#main_unhoused_city_plot
+```
+
+
+
+```{r, HIT_background}
+#shorter way to upload all HIT dfs for 2007-2022
+path <- "~/Downloads/2007-2022-HIC-Counts-by-CoC.xlsx"
+#install.packages("openxlsx")
+library(openxlsx)
+sheets <- openxlsx::getSheetNames(path)
+main_shelter_list <- lapply(sheets, openxlsx::read.xlsx, xlsxFile=path)
+names(main_shelter_list) <- sheets
+```
+
+```{r, HIT_merge}
+#dropped unnecessary columns from HIT list
+main_shelter_shortened <- lapply(main_shelter_list, function(dataset) dataset[, c(1,2,6,7,8), drop = FALSE])
+
+#merge all df for all years together
+main_shelter <- main_shelter_shortened |>
+  reduce(inner_join, by = c("CoC.Number"))
+main_shelter <- main_shelter |>
+  filter(`CoC.Number` != "NA") |>
+  rename(`CoC Number` = "CoC.Number")
+```
+
+```{r, merge_HIT_PIT}
+merged_shelter_unhoused <- merge(main_shelter, main_unhoused, by = "CoC Number", all = FALSE)
+```
+
