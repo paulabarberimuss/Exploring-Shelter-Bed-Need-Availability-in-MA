@@ -77,7 +77,7 @@ HIC_count <- read_excel("~/Downloads/2007-2022-HIC-Counts-by-CoC.xlsx", sheet = 
 ```
 
 ```{r, unsheltered-trend}
-#mutate variable names (remove spaces)
+#mutate PIT_count variable names (remove spaces)
 PIT_count <- PIT_count |>
   mutate(year = Year,
          coc_number = `CoC Number`,
@@ -89,6 +89,13 @@ PIT_count <- PIT_count |>
          `Sheltered SH Homeless` = `Sheltered SH Homeless`,
          prop_sheltered_homeless = `Sheltered Homeless`/`Overall Homeless`,
          prop_unsheltered_homeless = `Unsheltered Homeless`/`Overall Homeless`)
+
+#mutate HIC_count variable names
+HIC_count <- HIC_count |>
+  mutate(year = Year,
+         coc_number = `CoC Number`,
+         total_yr_beds = `Total Year-Round Beds (ES,TH)`,
+         total_yr_es_beds = `Total Year-Round Beds (ES)`)
 
 #visualize over unsheltered trend over time
 PIT_count_over_time <- PIT_count |>
