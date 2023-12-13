@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/boston_bed_type_trend-1.png","index_files/figure-html5/datavisualization-1.png","index_files/figure-html5/examine-shelterunhoused-relationship-1.png","index_files/figure-html5/examine-shelterunhoused-relationship-2.png","index_files/figure-html5/unsheltered-trend-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.25/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/boston_bed_type_trend-1.png","index_files/figure-html5/datavisualization-1.png","index_files/figure-html5/examine-shelterunhoused-relationship-1.png","index_files/figure-html5/examine-shelterunhoused-relationship-2.png","index_files/figure-html5/massachusetts_yr_bed_trend-1.png","index_files/figure-html5/unsheltered-trend-1.png","index_files/figure-html5/unsheltered-trend-milestone4-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.25/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1628,8 +1628,94 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>  <span class='op'>)</span></span>
 <span><span class='va'>PIT_count_over_time_visual</span></span></code></pre>
 </div>
+<p><img src="index_files/figure-html5/unsheltered-trend-milestone4-1.png" width="624" /></p>
+</div>
+<h2 id="final-project-exploring-homeless-shelters-responsiveness-to-bed-needs-in-massachusetts">Final Project: Exploring Homeless Shelters’ Responsiveness to Bed Needs in Massachusetts</h2>
+<h3 id="introduction">Introduction</h3>
+<p>It has been reported repeatedly that America’s homelessness and housing crises are on the rise, but how have homeless shelters changed as a result? Has shelter bed availability risen as well? In this study, I plan to examine how reported shelter bed availability in the United States has changed (or not) as the prevalence of homelessness has changed between the years of 2007 and 2022. Homelessness is incredibly stigmatized in this country and research has shown how discrimination against unhoused people has limited their political, economic, and social rights. A National Homelessness Law Center report found that between 2006 and 2019, city-wide bans on camping increased by more than 90%, and this is just one example of how homelessness is criminalized. Considering the abundance of anti-homelessness attitudes and legislation, I hypothesize that as the prevalence of homelessness has grown, especially in the past decade, shelter bed availability has not increased to the same extent. If I observe that the number of available shelter beds does not increase (remains similar or decreases) when the prevalence of homelessness increases, this would provide support for my hypothesis. If I observe that the number of available shelter beds increases as the prevalence of homelessness increases, this would provide support against my hypothesis.</p>
+<h3 id="data">Data</h3>
+<p>The data comes from a merging of two of the Department of Housing and Urban Development (HUD)’s datasets (1) Point in Time and (2) Housing in Time counts for Continuums of Care (CoC) between the years of 2007 and 2022. [CLARIFY point in time and housing in time]. As mentioned earlier, the CoC type is determined and defined by HUD. Through the HUD, different geographic areas in the United States are identified as a particular CoC, which is a regional group that coordinates housing and services funding for unhoused families and individuals as prescribed by the HUD CoC policies. There are different CoC categories, for example, “Largely Rural”, “Major City”, “Largely Suburban” etc. The CoC categories present in Massachusetts are “Major City”, “Largely Suburban”, and “Other Largely Urban.”</p>
+<p>The explanatory variable of interest is the proportion of the population that is considered to be homeless and the outcome variable is the number of available year-round shelter beds for that same year. These variables are self-reported by the CoCs through the HUD’s Homeless Management Information System. [EXPLAIN HOW THEY GET POINT IN TIME COUNTS and housing inventory counts]</p>
+<p>I will be exploring the relationship between the homeless population and available year-round shelter beds through observational data. [specify research design]</p>
+<h4 id="preparing-the-data">Preparing the data</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://readxl.tidyverse.org'>"readxl"</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>RColorBrewer</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'>#create dataframe for PIT Counts dataset</span></span>
+<span><span class='va'>PIT_count</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readxl.tidyverse.org/reference/read_excel.html'>read_excel</a></span><span class='op'>(</span><span class='st'>"~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx"</span>, sheet <span class='op'>=</span> <span class='fl'>18</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'>#create dataframe for HIC Counts dataset</span></span>
+<span><span class='va'>HIC_count</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readxl.tidyverse.org/reference/read_excel.html'>read_excel</a></span><span class='op'>(</span><span class='st'>"~/Downloads/2007-2022-HIC-Counts-by-CoC.xlsx"</span>, sheet <span class='op'>=</span> <span class='fl'>17</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'>#mutate PIT_count variable names (remove spaces)</span></span>
+<span><span class='va'>PIT_count</span> <span class='op'>&lt;-</span> <span class='va'>PIT_count</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>year <span class='op'>=</span> <span class='va'>Year</span>,</span>
+<span>         coc_number <span class='op'>=</span> <span class='va'>`CoC Number`</span>,</span>
+<span>         overall_homeless <span class='op'>=</span> <span class='va'>`Overall Homeless`</span>,</span>
+<span>         sheltered_homeless <span class='op'>=</span> <span class='va'>`Sheltered Homeless`</span>,</span>
+<span>         unsheltered_homeless <span class='op'>=</span> <span class='va'>`Unsheltered Homeless`</span>,</span>
+<span>         sheltered_es_homeless <span class='op'>=</span> <span class='va'>`Sheltered ES Homeless`</span>,</span>
+<span>         sheltered_th_homeless <span class='op'>=</span> <span class='va'>`Sheltered TH Homeless`</span>,</span>
+<span>         `Sheltered SH Homeless` <span class='op'>=</span> <span class='va'>`Sheltered SH Homeless`</span>,</span>
+<span>         prop_sheltered_homeless <span class='op'>=</span> <span class='va'>`Sheltered Homeless`</span><span class='op'>/</span><span class='va'>`Overall Homeless`</span>,</span>
+<span>         prop_unsheltered_homeless <span class='op'>=</span> <span class='va'>`Unsheltered Homeless`</span><span class='op'>/</span><span class='va'>`Overall Homeless`</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'>#mutate HIC_count variable names</span></span>
+<span><span class='va'>HIC_count</span> <span class='op'>&lt;-</span> <span class='va'>HIC_count</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>year <span class='op'>=</span> <span class='va'>Year</span>,</span>
+<span>         coc_number <span class='op'>=</span> <span class='va'>`CoC Number`</span>,</span>
+<span>         total_yr_beds <span class='op'>=</span> <span class='va'>`Total Year-Round Beds (ES,TH)`</span>,</span>
+<span>         total_yr_es_beds <span class='op'>=</span> <span class='va'>`Total Year-Round Beds (ES)`</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h3 id="visualizing-homeless-count-and-year-round-bed-count">Visualizing Homeless Count and Year-Round Bed Count</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#visualize over unsheltered trend over time</span></span>
+<span><span class='va'>PIT_count_over_time</span> <span class='op'>&lt;-</span> <span class='va'>PIT_count</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>year</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>state_sheltered_prop <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>sheltered_homeless</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>overall_homeless</span><span class='op'>)</span><span class='op'>*</span><span class='fl'>100</span>,</span>
+<span>            state_unsheltered_prop <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>unsheltered_homeless</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>overall_homeless</span><span class='op'>)</span><span class='op'>*</span><span class='fl'>100</span><span class='op'>)</span></span>
+<span><span class='va'>PIT_count_over_time_visual</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>PIT_count_over_time</span>,</span>
+<span>       mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>year</span><span class='op'>)</span>,</span>
+<span>                     y <span class='op'>=</span> <span class='va'>state_unsheltered_prop</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span>stat<span class='op'>=</span><span class='st'>"identity"</span>, fill<span class='op'>=</span><span class='st'>"steelblue4"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_discrete.html'>scale_x_discrete</a></span><span class='op'>(</span>breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>2006</span>,<span class='fl'>2023</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>'linen'</span><span class='op'>)</span>,</span>
+<span>        panel.grid.major <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_line</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>'linen'</span><span class='op'>)</span>,</span>
+<span>        plot.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>face<span class='op'>=</span><span class='st'>"bold"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    x <span class='op'>=</span> <span class='st'>"Year"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Percent of Unhoused that are Unsheltered (%)"</span>,</span>
+<span>    title <span class='op'>=</span> <span class='st'>"Percent of Unhoused Folks that are Unsheltered in Massachusetts"</span>,</span>
+<span>    subtitle <span class='op'>=</span> <span class='st'>"Among MA HUD Continuums of Care from 2007-2022"</span>,</span>
+<span>    source <span class='op'>=</span> <span class='st'>"HUD Housing Inventory Count"</span></span>
+<span>  <span class='op'>)</span></span>
+<span><span class='va'>PIT_count_over_time_visual</span></span></code></pre>
+</div>
 <p><img src="index_files/figure-html5/unsheltered-trend-1.png" width="624" /></p>
 </div>
+<p>In this chart, we see that the percent of unhoused folks that are unsheltered has varied over time. Though it appeared to be decreasing since 2007, there’s been a noticeable increase since the onset of the Covid-19 pandemic in the US in 2020. This variability motivates the question of whether shelter bed availability is responsive to need, based on the prevalence of homelessness.</p>
+<p>[insert bar plot of the number of beds total in MA over time]</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#visualize Massachusetts CoC year-round beds</span></span>
+<span><span class='va'>HIC_yr_visual</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>HIC_count</span>,</span>
+<span>       mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>year</span><span class='op'>)</span>,</span>
+<span>                     y <span class='op'>=</span> <span class='va'>total_yr_beds</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span>fill<span class='op'>=</span><span class='st'>"steelblue4"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/lims.html'>ylim</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>20000</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_discrete.html'>scale_x_discrete</a></span><span class='op'>(</span>breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>2006</span>,<span class='fl'>2023</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span> </span>
+<span><span class='va'>HIC_yr_visual</span> </span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/massachusetts_yr_bed_trend-1.png" width="624" /></p>
+</div>
+<p>[make some observation about the plot]</p>
+<h2 id="results">Results</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#create merged dataframe for PIT and HIC datasets by matching CoC</span></span>
@@ -1645,8 +1731,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>'linen'</span><span class='op'>)</span>,</span>
 <span>        plot.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>face<span class='op'>=</span><span class='st'>"bold"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
-<span>    x <span class='op'>=</span> <span class='st'>"Total Number of Overall Unhoused Folks"</span>,</span>
-<span>    y <span class='op'>=</span> <span class='st'>"Total Number of Year-Round Beds"</span>,</span>
+<span>    x <span class='op'>=</span> <span class='st'>"Number of Overall Unhoused Folks per CoC Region"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Number of Year-Round Beds per CoC Region"</span>,</span>
 <span>    title <span class='op'>=</span> <span class='st'>"Unhoused Count and Bed Counts in Massachusetts"</span>,</span>
 <span>    subtitle <span class='op'>=</span> <span class='st'>"Among MA HUD Continuums of Care from 2007-2022"</span>,</span>
 <span>    source <span class='op'>=</span> <span class='st'>"HUD Housing Inventory Count"</span></span>
@@ -1661,9 +1747,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>'linen'</span><span class='op'>)</span>,</span>
 <span>        plot.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>face<span class='op'>=</span><span class='st'>"bold"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
-<span>    x <span class='op'>=</span> <span class='st'>"Total Number of Overall Unhoused Folks"</span>,</span>
-<span>    y <span class='op'>=</span> <span class='st'>"Total Number of Year-Round Beds"</span>,</span>
-<span>    title <span class='op'>=</span> <span class='st'>"Unhoused Count and Bed Counts in Massachusetts"</span>,</span>
+<span>    x <span class='op'>=</span> <span class='st'>"Number of Overall Unhoused Folks per CoC Region"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Number of Year-Round Beds per CoC Region"</span>,</span>
+<span>    title <span class='op'>=</span> <span class='st'>"Unhoused Count and Bed Counts in Massachusetts with Line of Best Fit"</span>,</span>
 <span>    subtitle <span class='op'>=</span> <span class='st'>"Among MA HUD Continuums of Care from 2007-2022"</span>,</span>
 <span>    source <span class='op'>=</span> <span class='st'>"HUD Housing Inventory Count"</span></span>
 <span>    <span class='op'>)</span> <span class='op'>+</span></span>
@@ -1684,6 +1770,9 @@ Coefficients:
      (Intercept)  overall_homeless  
         -10.5031            0.8261  </code></pre>
 </div>
+<p>The first visualization is a scatterplot of CoC regions in Massachusetts with their corresponding number of unhoused folks and number of year-round shelter beds for each year from 2007 to 2022. There appears to be a positive association between the number of overall unhoused folks in a CoC region and the number of beds in that same region.</p>
+<p>The second visualization shows the same scatterplot with a line of best fit. The positive association depicted by the line of best fit indicates that a higher number of unhoused folks in a CoC region corresponds to a higher number of year-round beds in that region. [DESCRIBE linear REGRESSION RESULTS]</p>
+<p>[ADD MODEL SUMMARY]</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#add coc_category </span></span>
@@ -1724,29 +1813,8 @@ Coefficients:
 coc_categoryOther Largely Urban CoC  
                          -1.307e+02  </code></pre>
 </div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#mutate variables to remove spaces</span></span>
-<span><span class='va'>HIC_count</span> <span class='op'>&lt;-</span> <span class='va'>HIC_count</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>year <span class='op'>=</span> <span class='va'>Year</span>,</span>
-<span>         coc_number <span class='op'>=</span> <span class='va'>`CoC Number`</span>,</span>
-<span>         total_yr_beds <span class='op'>=</span> <span class='va'>`Total Year-Round Beds (ES,TH)`</span>,</span>
-<span>         total_yr_es_beds <span class='op'>=</span> <span class='va'>`Total Year-Round Beds (ES)`</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='co'>#subset for Boston CoC</span></span>
-<span><span class='va'>HIC_boston_yr</span> <span class='op'>&lt;-</span> <span class='va'>HIC_count</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>coc_number</span> <span class='op'>==</span> <span class='st'>"MA-500"</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='co'>#visualize Boston CoC year-round beds</span></span>
-<span><span class='va'>HIC_boston_yr_visual</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>HIC_boston_yr</span>,</span>
-<span>       mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>year</span><span class='op'>)</span>,</span>
-<span>                     y <span class='op'>=</span> <span class='va'>total_yr_beds</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span>fill<span class='op'>=</span><span class='st'>"steelblue4"</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_discrete.html'>scale_x_discrete</a></span><span class='op'>(</span>breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>2006</span>,<span class='fl'>2023</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span> </span>
-<span><span class='va'>HIC_boston_yr_visual</span> </span></code></pre>
-</div>
-<p><img src="index_files/figure-html5/boston_bed_type_trend-1.png" width="624" /></p>
-</div>
+<p>[DESCRIBE MULTIPLE REGRESSION RESULTS]</p>
+<p>[ADD MODEL SUMMARY]</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
