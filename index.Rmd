@@ -15,7 +15,7 @@ I am interested in exploring data related to emergency homeless shelters in Bost
 
 ## Final Project Milestone 2: Project Proposal
 
-It has been reported repeatedly that America's homelessness and housing crises are on the rise, but how have homeless shelters changed as a result? Has shelter bed availability risen as well? In this study, I plan to examine how reported shelter bed availability in the United States has changed (or not) as the prevalence of homelessness has changed between the years of 2007 and 2022. Homelessness is incredibly stigmatized in this country and research has shown how discrimination against unhoused people has limited their political, econonomic, and social rights. A National Homelessness Law Center report found that between 2006 and 2019, city-wide bans on camping increased by more than 90%, and this is just one example of how homelessness is criminalized. Considering the abundance of anti-homelessness attitudes and legislation, I hypothesize that as the prevalence of homelessness has grown, especially in the past decade, shelter bed availability has not increased to the same extent. 
+It has been reported repeatedly that America's homelessness and housing crises are on the rise, but how have homeless shelters changed as a result? Has shelter bed availability risen as well? In this study, I plan to examine how reported shelter bed availability in the United States has changed (or not) as the prevalence of homelessness has changed between the years of 2007 and 2022. Homelessness is incredibly stigmatized in this country and research has shown how discrimination against unhoused people has limited their political, economic, and social rights. A National Homelessness Law Center report found that between 2006 and 2019, city-wide bans on camping increased by more than 90%, and this is just one example of how homelessness is criminalized. Considering the abundance of anti-homelessness attitudes and legislation, I hypothesize that as the prevalence of homelessness has grown, especially in the past decade, shelter bed availability has not increased to the same extent. 
 
 I still need to select a particular CoC type for my unit of analysis. Through the Department of Housing and Urban Development (HUD), different geographic areas in the United States are identified as a particular CoC (a Continuum of Care), which is a regional group that coordinates housing and services funding for unhoused families and individuals as prescribed by the HUD CoC policies. There are different CoC types, for example, "Largely Rural", "Major City", "Largely Suburban" etc. The explanatory variable of interest is the proportion of the population that is considered to be homeless and the outcome variable is the number of available shelter beds for that same year. This data will come from a merging of two of HUD's datasets focusing on Point in Time and Housing in Time counts for CoCs between the years of 2007 and 2022. As mentioned earlier, the CoC type is determined and defined by HUD. If I observe that the number of available shelter beds does not increase (remains similar or decreases) when the prevalence of homelessness increases, this would provide support for my hypothesis. If I observe that the number of available shelter beds increases as the prevalence of homelessness increases, this would provide support against my hypothesis. 
 
@@ -74,9 +74,6 @@ PIT_count <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx", sheet = 
 #create dataframe for HIC Counts dataset
 HIC_count <- read_excel("~/Downloads/2007-2022-HIC-Counts-by-CoC.xlsx", sheet = 17)
 
-#create merged dataframe for PIT and HIC datasets by matching CoC
-
-
 ```
 
 ```{r, unsheltered-trend}
@@ -115,6 +112,70 @@ PIT_count_over_time_visual <-ggplot(data = PIT_count_over_time,
   )
 PIT_count_over_time_visual
 ```
+```{r, merge-data}
+#create merged dataframe for PIT and HIC datasets by matching CoC
+homelessness <- merge(HIC_count, PIT_count, by = c("year", "coc_number"), all = FALSE) |>
+  select(-c("Year.x", "Year.y", "CoC Number.x", "CoC Number.y"))
+```
+
+```{r, examine-shelterunhoused-relationship}
+#scatter plot prediction for total unhoused-total beds relationship
+unhoused_yr_beds <- ggplot(homelessness, aes(x = overall_homeless, y = total_yr_beds)) +
+  geom_point(color = "rosybrown4", alpha = .5) +
+  theme(panel.background = element_rect(fill = 'linen'),
+        plot.title = element_text(face="bold")) + 
+  labs(
+    x = "Total Number of Overall Unhoused Folks",
+    y = "Total Number of Year-Round Beds",
+    title = "Unhoused Count and Bed Counts in Massachusetts",
+    subtitle = "Among MA HUD Continuums of Care from 2007-2022",
+    source = "HUD Housing Inventory Count"
+    )
+unhoused_yr_beds
+
+#scatter plot with line of best fit
+unhoused_yr_beds_bestfit <- ggplot(homelessness, aes(x = overall_homeless, y = total_yr_beds)) +
+  geom_point(color = "rosybrown4", alpha = .5) +
+  theme(panel.background = element_rect(fill = 'linen'),
+        plot.title = element_text(face="bold")) + 
+  labs(
+    x = "Total Number of Overall Unhoused Folks",
+    y = "Total Number of Year-Round Beds",
+    title = "Unhoused Count and Bed Counts in Massachusetts",
+    subtitle = "Among MA HUD Continuums of Care from 2007-2022",
+    source = "HUD Housing Inventory Count"
+    ) +
+  geom_smooth(method = "lm", se = FALSE, color = "black", size = .6)
+unhoused_yr_beds_bestfit
+
+#linear regression for the two variables
+simple_fit <- lm(total_yr_beds ~ overall_homeless, data = homelessness)
+simple_fit
+
+```
+```{r, examine-relationship-with-controls}
+#add coc_category 
+homelessness <- homelessness |>
+  mutate(coc_category = case_when(
+    coc_number == "MA-500" ~ "Major City CoC",
+    coc_number == "MA-502" ~"Largely Suburban CoC",
+    coc_number == "MA-503" ~ "Largely Suburban CoC", 
+    coc_number == "MA-504" ~ "Largely Suburban CoC", 
+    coc_number == "MA-505" ~ "Largely Suburban CoC", 
+    coc_number == "MA-506" ~ "Largely Suburban CoC", 
+    coc_number == "MA-507" ~ "Largely Suburban CoC", 
+    coc_number == "MA-509" ~ "Other Largely Urban CoC", 
+    coc_number == "MA-511" ~ "Largely Suburban CoC", 
+    coc_number == "MA-515" ~ "Largely Suburban CoC", 
+    coc_number == "MA-516" ~ "Largely Suburban CoC", 
+    coc_number == "MA-519" ~ "Largely Suburban CoC", 
+  ))
+
+mult_fit <- lm(total_yr_beds ~ overall_homeless + year + coc_category, data = homelessness)
+mult_fit
+```
+
+
 ```{r, boston_bed_type_trend}
 #mutate variables to remove spaces
 HIC_count <- HIC_count |>
