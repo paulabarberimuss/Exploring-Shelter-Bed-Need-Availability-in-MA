@@ -1,7 +1,7 @@
 ---
 title: "Gov 50 Final Project"
 author: "Paula Barberi"
-description: "Homelessness and Shelter Bed Availability"
+description: "Homelessness and Shelter Bed Availability in MA"
 output:
   distill::distill_article:
     self_contained: false
@@ -43,8 +43,9 @@ unique(unhoused1$coc_category)
 
 #group data
 unhoused2 <- unhoused1 |>
+  filter(!is.na(coc_category)) |>
   group_by(coc_category) |>
-  summarize(avg_prop_es_overall = mean(prop_es_overall_homeless_2022), na.rm = TRUE, na.omit(coc_category)) 
+  summarize(avg_prop_es_overall = mean(prop_es_overall_homeless_2022, na.rm = TRUE)) 
 
 #wrangle data
 unhoused2_visual <- unhoused2 |>
@@ -55,12 +56,86 @@ unhoused2_visual <- unhoused2 |>
   theme(axis.text.x = element_text(size = 7)) +
   labs(x = "HUD CoC Category",
        y = "Avg. Proportion of Unhoused in ES",
-       title = "Average Proportion of Unhoused in Emergency Shelters by CoC",
+       title = "Average Proportion of Unhoused Folks in U.S.Emergency Shelters by CoC in 2022",
        caption = "Data from HUD 2022 Point in Time Counts")
 unhoused2_visual
 ```
 
 ## Final Project Milestone 4: Data Visualization
+```{r, data-prep}
+library(tidyverse)
+library(ggplot2)
+library("readxl")
+library(RColorBrewer)
+
+#create dataframe for PIT Counts dataset
+PIT_count <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx", sheet = 18)
+
+#create dataframe for HIC Counts dataset
+HIC_count <- read_excel("~/Downloads/2007-2022-HIC-Counts-by-CoC.xlsx", sheet = 17)
+
+#create merged dataframe for PIT and HIC datasets by matching CoC
+
+
+```
+
+```{r, unsheltered-trend}
+#mutate variable names (remove spaces)
+PIT_count <- PIT_count |>
+  mutate(year = Year,
+         coc_number = `CoC Number`,
+         overall_homeless = `Overall Homeless`,
+         sheltered_homeless = `Sheltered Homeless`,
+         unsheltered_homeless = `Unsheltered Homeless`,
+         sheltered_es_homeless = `Sheltered ES Homeless`,
+         sheltered_th_homeless = `Sheltered TH Homeless`,
+         `Sheltered SH Homeless` = `Sheltered SH Homeless`,
+         prop_sheltered_homeless = `Sheltered Homeless`/`Overall Homeless`,
+         prop_unsheltered_homeless = `Unsheltered Homeless`/`Overall Homeless`)
+
+#visualize over unsheltered trend over time
+PIT_count_over_time <- PIT_count |>
+  group_by(year) |>
+  summarize(state_sheltered_prop = sum(sheltered_homeless)/sum(overall_homeless)*100,
+            state_unsheltered_prop = sum(unsheltered_homeless)/sum(overall_homeless)*100)
+PIT_count_over_time_visual <-ggplot(data = PIT_count_over_time,
+       mapping = aes(x = factor(year),
+                     y = state_unsheltered_prop)) +
+  geom_col(stat="identity", fill="steelblue4") +
+  scale_x_discrete(breaks = seq(2006,2023, 1)) +
+  theme(panel.background = element_rect(fill = 'linen'),
+        panel.grid.major = element_line(color = 'linen'),
+        plot.title = element_text(face="bold")) + 
+  labs(
+    x = "Year",
+    y = "Percent of Unhoused that are Unsheltered (%)",
+    title = "Percent of Unhoused Folks that are Unsheltered in Massachusetts",
+    subtitle = "Among MA HUD Continuums of Care from 2007-2022",
+    source = "HUD Housing Inventory Count"
+  )
+PIT_count_over_time_visual
+```
+```{r, boston_bed_type_trend}
+#mutate variables to remove spaces
+HIC_count <- HIC_count |>
+  mutate(year = Year,
+         coc_number = `CoC Number`,
+         total_yr_beds = `Total Year-Round Beds (ES,TH)`,
+         total_yr_es_beds = `Total Year-Round Beds (ES)`)
+
+#subset for Boston CoC
+HIC_boston_yr <- HIC_count |>
+  filter(coc_number == "MA-500")
+
+#visualize Boston CoC year-round beds
+HIC_boston_yr_visual <- ggplot(data = HIC_boston_yr,
+       mapping = aes(x = factor(year),
+                     y = total_yr_beds)) +
+  geom_col(fill="steelblue4") +
+  scale_x_discrete(breaks = seq(2006,2023, 1)) 
+HIC_boston_yr_visual 
+```
+
 
 ```{r, PIT_background}
 library(tidyverse)
@@ -149,4 +224,5 @@ main_shelter <- main_shelter |>
 ```{r, merge_HIT_PIT}
 merged_shelter_unhoused <- merge(main_shelter, main_unhoused, by = "CoC Number", all = FALSE)
 ```
+
 
