@@ -343,3 +343,13 @@ modelsummary::modelsummary(mult_fit,
 ## Conclusion 
 
 My analysis suggests that MA CoCs are not meeting the demand for year-round shelter beds in relation their communities' homeless counts. These results were largely statistically significant for both regression models. In fact, controlling for other factors like year and CoC category makes this unresponsiveness to homeless counts more apparent. Limitations to this analysis include some missing data (some MA CoCs were removed in this analysis due to missing data). Also, seasonal and overflow emergency bed counts were not taken into account which means that some responsiveness to need was not factored into this analysis and underestimates shelter work. Further research is necessary to better determine the nature of the relationship between homeless counts and shelter bed availability among CoCs. To improve this analysis, I would take into account these other types of shelter beds. 
+
+## Works Cited
+
+Dholakia, N. (2018, July 7). How the U.S. Criminalizes Homelessness. Vera Institute of Justice. https://www.vera.org/news/how-the-u-s-criminalizes-homelessness
+Johnson, B. (2023, September 15). Number of older adults facing homelessness on the rise in Mass. WCVB. https://www.wcvb.com/article/number-of-older-adults-facing-homelessness-on-the-rise-in-massachusetts/45128299
+Jolicouer, L. (2023, November 20). With adult shelters in Mass. Overflowing, advocates worry about winter. https://www.wbur.org/news/2023/11/20/massachusetts-adult-homeless-shelters-full-capacity
+Sherman, E. (n.d.). Affordable housing crisis in Massachusetts contributing to homelessness. Fall River Herald News. Retrieved December 13, 2023, from https://www.heraldnews.com/story/news/2019/02/11/affordable-housing-crisis-in-massachusetts/6033543007/
+Siegel, J., & Alston, P. (2023, June 27). Can social housing help solve the Mass. Housing crisis? GBH. https://www.wgbh.org/news/local/2023-06-27/can-social-housing-help-solve-the-mass-housing-crisis
+U.S. Department of Housing and Urban Development (HUD). (2023a). 2007—2022 Housing Inventory Count by CoC. https://www.hudexchange.info/resource/3031/pit-and-hic-data-since-2007/
+U.S. Department of Housing and Urban Development (HUD). (2023b). 2007—2022 Point in Time Estimates by CoC. https://www.hudexchange.info/resource/3031/pit-and-hic-data-since-2007/
