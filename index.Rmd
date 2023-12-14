@@ -122,20 +122,19 @@ PIT_count_over_time_visual <-ggplot(data = PIT_count_over_time,
 PIT_count_over_time_visual
 ```
 
-## Final Project: Exploring Homeless Shelters' Responsiveness to Bed Needs in Massachusetts
+## Final Project: Exploring Homeless Shelters' Responsiveness to Homelessness Prevalence via Bed Availability in Massachusetts
 
 ### Introduction
-It has been reported repeatedly that America's homelessness and housing crises are on the rise, but how have homeless shelters changed as a result? Has shelter bed availability risen as well? In this study, I plan to examine how reported shelter bed availability in the United States has changed (or not) as the prevalence of homelessness has changed between the years of 2007 and 2022. Homelessness is incredibly stigmatized in this country and research has shown how discrimination against unhoused people has limited their political, economic, and social rights. A National Homelessness Law Center report found that between 2006 and 2019, city-wide bans on camping increased by more than 90%, and this is just one example of how homelessness is criminalized. Considering the abundance of anti-homelessness attitudes and legislation, I hypothesize that as the prevalence of homelessness has grown, especially in the past decade, shelter bed availability has not increased to the same extent. If I observe that the number of available shelter beds does not increase (remains similar or decreases) when the prevalence of homelessness increases, this would provide support for my hypothesis. If I observe that the number of available shelter beds increases as the prevalence of homelessness increases, this would provide support against my hypothesis. 
+The number of folks experiencing homelessness in the state of Massachusetts remains alarmingly high. The Point in Time counts data released by the U.S. Department of Housing and Urban Development reveal that 15,127 folks were estimated as experiencing homelessness during the 2022 point-in-time count. The Former Governor of Massachusetts, Charlie Baker, declared a housing crisis in Massachusetts in 2018 (Sherman, 2019), and the current governor, Maura Healey, declared a state of emergency just a few months ago to respond to the most recent wave of homelessness in the state (Wallack and Willmsen, 2023). Just this past month, shelter providers in Massachusetts announced that their emergency homeless shelters are already overwhelmed this winter season (Jolicoeur, 2023). Some are reportedly already operating over capacity. Amidst these crises, how has homeless shelter bed availability changed in the state? Are homeless shelters operating with the same number of beds they had years ago, or have they added more beds to meet the growing need? In this study, I plan to examine how reported shelter bed availability in the state of Massachusetts has changed (or not) in relation to the prevalence of homelessness from the years of 2007 and 2022. Homelessness is incredibly stigmatized in this country and research has shown how discrimination against unhoused people limits their political, economic, and social rights. A National Homelessness Law Center report found that between 2006 and 2019, city-wide bans on camping increased by more than 90% (Dholakia, 2021), but affordable housing is still an issue. It's estimated that the state of Massachusetts "needs over 125,000 to 200,000 more housing units to meet demand by 2030" (Siegel and Alston, 2023). Considering the abundance of anti-homelessness attitudes legislation, I hypothesize that as the prevalence of homelessness has grown, especially in the past decade, shelter bed availability has not increased to same extent. More specifically, I do not expect CoCs to have enough beds in relation to their PIT homeless counts (less than 1:1 ratio).
 
 ### Data
-The data comes from a merging of two of the Department of Housing and Urban Development (HUD)'s datasets (1) Point in Time and (2) Housing in Time counts for Continuums of Care (CoC) between the years of 2007 and 2022. [CLARIFY point in time and housing in time]. As mentioned earlier, the CoC type is determined and defined by HUD. Through the HUD, different geographic areas in the United States are identified as a particular CoC, which is a regional group that coordinates housing and services funding for unhoused families and individuals as prescribed by the HUD CoC policies. There are different CoC categories, for example, "Largely Rural", "Major City", "Largely Suburban" etc. The CoC categories present in Massachusetts are "Major City", "Largely Suburban", and "Other Largely Urban."  
+The data comes from a merging of two of the Department of Housing and Urban Development (HUD)'s data sets: (1) Point in Time estimates and (2) Housing Inventory Counts for Continuums of Care (CoC) between the years of 2007 and 2022. The data is filtered for Massachusetts CoCs specifically. Through the HUD, different geographic areas in the United States are identified as a particular CoC (a Continuum of Care), which is a regional group that coordinates housing and services funding for unhoused families and individuals as prescribed by the HUD CoC policies. For example, some of the Massachusetts CoCs are the Boston CoC, Worcester City & County CoC, and Springfield/Hampden County CoC. CoCs are attributed a CoC category, or label of their region type, for example, the Boston CoC is a "Major City CoC" and the Worcester City & County CoC is a "Largely Suburban CoC". As described by the HUD, the Point in Time (PIT count) is a "count of sheltered and unsheltered people experiencing homelessness on a single night in January" conducted by each CoC. Similarly, the Housing Inventory Count (HIC) is point in time inventory by CoC of the beds and units provided to those experiencing homelessness and for permanent housing projects within their CoC. The programs which offer these beds are of the following: Emergency Shelter, Transitional Housing, Rapid Re-housing, Safe Haven, and Permanent Supportive Housing. This study specifically examines the year-round bed count, which encompasses year-round beds provided by emergency shelters, transitional housing, and safe haven programs. Year-round beds include beds that are available on a planned year-round basis (as opposed to seasonal or overflow beds which are available on a temporary basis). 
 
-The explanatory variable of interest is the proportion of the population that is considered to be homeless and the outcome variable is the number of available year-round shelter beds for that same year. These variables are self-reported by the CoCs through the HUD's Homeless Management Information System. [EXPLAIN HOW THEY GET POINT IN TIME COUNTS and housing inventory counts]
+HIC and PIT estimates are collected on a single night during the last ten days of January by local shelter providers within CoCs and then reported by CoCs to HUD. While the HIC data collection is simpler as it's just an inventory count, the PIT data collection is more difficult as it entails survey methodology. Shelter providers obtain their sheltered counts (numbers of shelter guests) from in-house surveying, but unsheltered counts entail volunteers and outreach workers traveling far throughout their communities to survey all areas including homeless encampments. 
 
-I will be exploring the relationship between the homeless population and available year-round shelter beds through observational data. [specify research design]
+The explanatory variable of interest is the overall homeless count in a MA CoC and the outcome variable is the number of year-round shelter beds for the corresponding MA CoC. In this study, I will be exploring the relationship between the homeless population and year-round shelter bed availability for MA CoCs. The implemented research design is cross-sectional as it is comparing the outcome variable by Massachusetts CoCs. 
 
 #### Preparing the data
-
 
 ```{r, data-prep}
 library(tidyverse)
@@ -171,13 +170,15 @@ HIC_count <- HIC_count |>
 
 ```
 
-### Visualizing Homeless Count and Year-Round Bed Count
+### Visualizing the Independent (CoC Homeless Count) and Dependent (CoC Year-Round Shelter Bed Count) Variables
 
-In the chart below, we see that the percent of unhoused folks that are unsheltered has varied over time. Though it appeared to be decreasing since 2007, there's been a noticeable increase since the onset of the Covid-19 pandemic in the US in 2020. This variability motivates the question of whether shelter bed availability is responsive to need, based on the prevalence of homelessness.
+**I. CoC Homeless Count**
+
+In the bar chart below, we see that the percent of unhoused folks that are unsheltered has varied over time. Though it appeared to be decreasing since 2007, there's been a noticeable increase since the onset of the Covid-19 pandemic in the US in 2020. This variability motivates the question of whether shelter bed availability is responsive to need, based on the prevalence of homelessness.
 
 ```{r, unsheltered-trend}
 
-#visualize over unsheltered trend over time
+#visualize over unsheltered trend over time for MA CoCs
 PIT_count_over_time <- PIT_count |>
   group_by(year) |>
   summarize(state_sheltered_prop = sum(sheltered_homeless)/sum(overall_homeless)*100,
@@ -200,31 +201,46 @@ PIT_count_over_time_visual <-ggplot(data = PIT_count_over_time,
 PIT_count_over_time_visual
 ```
 
-[make some observation about the next bar plot about beds]
+**II. CoC Year-Round Shelter Bed Count**
 
-[insert bar plot of the number of beds total in MA over time]
+From the bar chart below, it appears that the number of year-round shelter beds for MA CoCs varies over time and seems to generally increase slightly over time. There do not appear to be any dramatic changes in year-round shelter beds for MA CoCs. 
 
 ```{r, massachusetts_yr_bed_trend}
 
 #visualize Massachusetts CoC year-round beds
-HIC_yr_visual <- ggplot(data = HIC_count,
+HIC_yr_count <- HIC_count |>
+  group_by(year) |>
+  summarize(yr_bed_state_sum = sum(total_yr_beds))
+
+HIC_yr_visual <- ggplot(data = HIC_yr_count,
        mapping = aes(x = factor(year),
-                     y = total_yr_beds)) +
+                     y = yr_bed_state_sum)) +
   geom_col(fill="steelblue4") +
   ylim(0,20000) +
-  scale_x_discrete(breaks = seq(2006,2023, 1)) 
-HIC_yr_visual 
+  scale_x_discrete(breaks = seq(2006,2023, 1)) +
+  theme(panel.background = element_rect(fill = 'linen'),
+        panel.grid.major = element_line(color = 'linen'),
+        plot.title = element_text(face="bold")) + 
+  labs(
+    x = "Year",
+    y = "Number Year-Round Shelter Beds",
+    title = "Number of Year-Round Shelter Beds in Massachusetts",
+    subtitle = "Among MA HUD Continuums of Care from 2007-2022",
+    source = "HUD Housing Inventory Count"
+  )
+HIC_yr_visual
 ```
 
 
 
 ## Results
 
-The first visualization is a scatterplot of CoC regions in Massachusetts with their corresponding number of unhoused folks and number of year-round shelter beds for each year from 2007 to 2022. There appears to be a positive association between the number of overall unhoused folks in a CoC region and the number of beds in that same region. 
+**Main Variable Regression**
 
-The second visualization shows the same scatterplot with a line of best fit. The positive association depicted by the line of best fit indicates that a higher number of unhoused folks in a CoC region corresponds to a higher number of year-round beds in that region. [DESCRIBE linear REGRESSION RESULTS]
+The first visualization is a scatter plot of CoC regions in Massachusetts with their corresponding number of unhoused folks and number of year-round shelter beds for each year from 2007 to 2022. There appears to be a positive association between the number of overall unhoused folks in a CoC region and the number of beds in that same region. The second visualization shows the same scatter plot with a line of best fit. The positive association depicted by the line of best fit indicates that a higher number of unhoused folks in a CoC region corresponds to a higher number of year-round beds in that region. 
 
-[ADD MODEL SUMMARY]
+The table below is based on a linear regression of the PIT homeless counts and number of year_round shelter beds in MA CoCs from 2007-2022. The linear regression model indicates that if the PIT homeless count was zero in a MA CoC, there would be approximately negative 11 beds in that CoC. This intercept value does not make sense in the real world, however we can interpret the Homeless PIT Count coefficient. The Homeless PIT Count coefficient is 0.826 which indicates that for every additional unhoused person that is counted by a CoC, there is an expected 0.826 increase in the number of beds in the CoC. The p-value for this coefficient is less than .001, which makes this coefficient value statistically significant. The Homeless PIT Count coefficient being less than one indicates that local providers may not be meeting bed demand. Other variables may be affecting the bed count, so we will now conduct a multiple linear regression to control for more variables that may be affecting the outcome variable. 
+
 
 ```{r, merge-data}
 #create merged dataframe for PIT and HIC datasets by matching CoC
@@ -266,11 +282,25 @@ unhoused_yr_beds_bestfit
 simple_fit <- lm(total_yr_beds ~ overall_homeless, data = homelessness)
 simple_fit
 
+#model summary for linear regression
+var_labels <- c(
+"(Intercept)" = "Intercept",
+"overall_homeless" = "MA CoC Homeless PIT Count"
+)
+modelsummary::modelsummary(simple_fit,
+                           statistic = c("s.e. = {std.error}",
+                                         "p = {p.value}"),
+                           coef_map = var_labels,
+                           gof_map = c("noba", "r,squared", "adj.r.squared"))
+
 ```
-[DESCRIBE MULTIPLE REGRESSION RESULTS]
+**Multiple Regression**
 
-[ADD MODEL SUMMARY]
+The table below is based on a multiple linear regression of the PIT homeless counts and number of year-round shelter beds in MA CoCs from 2007-2022 and controls for year and CoC category. The regression model indicates that if the PIT homeless count was zero in a MA CoC, there would be approximately negative 71270 beds in that CoC. Again, this intercept value does not make sense in the real world, but we can interpret the variable coefficients. The Homeless PIT Count coefficient is 0.411 which indicates that for every additional unhoused person that is counted by a CoC, there is an expected 0.411 increase in the number of beds in the CoC, controlling for year and CoC category. Notably, when we control for year and CoC category, the homeless PIT count coefficient is smaller. The p-value for this coefficient is less than .001, which makes this coefficient value statistically significant. The Homeless PIT Count coefficient being less than half of the previous coefficient provides further evidence that local providers are not meeting bed demand (which should be 1:1 if demand was to be fully met). 
 
+The Year and Major City CoC coefficients are both positive and statistically significant (p-values less than .001). This indicates that 1. as time passes, it's more likely for there to be more year-round shelter beds and 2. Major City CoCs tend to have more year-round shelter beds. The Other Largely Urban CoC coefficient was not found to be statistically significant. 
+
+Overall, while the analysis of both regression models indicate a relationship between these variables, we do not have sufficient evidence to interpret these results causally given that there was no treatment, control, or randomization. There could be confounding variables, thus further research is required to determine causality. 
 
 ```{r, examine-relationship-with-controls}
 #add coc_category 
@@ -293,21 +323,23 @@ homelessness <- homelessness |>
 #multiple linear regression with added controls of year and coc_category
 mult_fit <- lm(total_yr_beds ~ overall_homeless + year + coc_category, data = homelessness)
 mult_fit
-```
-```{r, boston-unsheltered trend}
-boston_PIT_count_over_time <- PIT_count |>
-  group_by(year) |>
-  filter(coc_number == "MA-500") |>
-  summarize(state_sheltered_prop = sum(sheltered_homeless)/sum(overall_homeless)*100,
-            state_unsheltered_prop = sum(unsheltered_homeless)/sum(overall_homeless)*100)
-boston_PIT_count_over_time_visual <-ggplot(data = boston_PIT_count_over_time,
-       mapping = aes(x = factor(year),
-                     y = state_unsheltered_prop)) +
-  geom_col(stat="identity", fill="steelblue4") +
-  scale_x_discrete(breaks = seq(2006,2023, 1)) +
-  theme(panel.background = element_rect(fill = 'linen'),
-        panel.grid.major = element_line(color = 'linen'),
-        plot.title = element_text(face="bold")) 
-boston_PIT_count_over_time_visual
+
+
+#model summary for multiple linear regression
+var_labels_2 <- c(
+"(Intercept)" = "Intercept",
+"overall_homeless" = "MA CoC Homeless PIT Count",
+"year" = "Year",
+"coc_categoryMajor City CoC" = "Major City CoC",
+"coc_categoryOther Largely Urban CoC" = "Other Largely Urban CoC"
+)
+modelsummary::modelsummary(mult_fit,
+                           statistic = c("s.e. = {std.error}",
+                                         "p = {p.value}"),
+                           coef_map = var_labels_2,
+                           gof_map = c("noba", "r,squared", "adj.r.squared"))
 ```
 
+## Conclusion 
+
+My analysis suggests that MA CoCs are not meeting the demand for year-round shelter beds in relation their communities' homeless counts. These results were largely statistically significant for both regression models. In fact, controlling for other factors like year and CoC category makes this unresponsiveness to homeless counts more apparent. Limitations to this analysis include some missing data (some MA CoCs were removed in this analysis due to missing data). Also, seasonal and overflow emergency bed counts were not taken into account which means that some responsiveness to need was not factored into this analysis and underestimates shelter work. Further research is necessary to better determine the nature of the relationship between homeless counts and shelter bed availability among CoCs. To improve this analysis, I would take into account these other types of shelter beds. 
