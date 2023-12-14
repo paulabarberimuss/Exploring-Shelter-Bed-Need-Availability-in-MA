@@ -76,6 +76,8 @@ HIC_count <- read_excel("~/Downloads/2007-2022-HIC-Counts-by-CoC.xlsx", sheet = 
 
 ```
 
+The boxplot below shows that among Massachusetts Continuums of Care (CoCs) the percentage of *unsheltered* unhoused folks has varied from 2007 to 2022. Notably, it appears it has been increasing the past few years since the onset of Covid-19 in the United States. With this context, the question of the relationship between shelter bed availability and prevalence of homelessness is an interesting and important one to explore. 
+
 ```{r, unsheltered-trend-milestone4}
 #mutate PIT_count variable names (remove spaces)
 PIT_count <- PIT_count |>
@@ -171,7 +173,7 @@ HIC_count <- HIC_count |>
 
 ### Visualizing Homeless Count and Year-Round Bed Count
 
-
+In the chart below, we see that the percent of unhoused folks that are unsheltered has varied over time. Though it appeared to be decreasing since 2007, there's been a noticeable increase since the onset of the Covid-19 pandemic in the US in 2020. This variability motivates the question of whether shelter bed availability is responsive to need, based on the prevalence of homelessness.
 
 ```{r, unsheltered-trend}
 
@@ -198,7 +200,7 @@ PIT_count_over_time_visual <-ggplot(data = PIT_count_over_time,
 PIT_count_over_time_visual
 ```
 
-In this chart, we see that the percent of unhoused folks that are unsheltered has varied over time. Though it appeared to be decreasing since 2007, there's been a noticeable increase since the onset of the Covid-19 pandemic in the US in 2020. This variability motivates the question of whether shelter bed availability is responsive to need, based on the prevalence of homelessness.
+[make some observation about the next bar plot about beds]
 
 [insert bar plot of the number of beds total in MA over time]
 
@@ -214,10 +216,15 @@ HIC_yr_visual <- ggplot(data = HIC_count,
 HIC_yr_visual 
 ```
 
-[make some observation about the plot]
+
 
 ## Results
 
+The first visualization is a scatterplot of CoC regions in Massachusetts with their corresponding number of unhoused folks and number of year-round shelter beds for each year from 2007 to 2022. There appears to be a positive association between the number of overall unhoused folks in a CoC region and the number of beds in that same region. 
+
+The second visualization shows the same scatterplot with a line of best fit. The positive association depicted by the line of best fit indicates that a higher number of unhoused folks in a CoC region corresponds to a higher number of year-round beds in that region. [DESCRIBE linear REGRESSION RESULTS]
+
+[ADD MODEL SUMMARY]
 
 ```{r, merge-data}
 #create merged dataframe for PIT and HIC datasets by matching CoC
@@ -260,12 +267,10 @@ simple_fit <- lm(total_yr_beds ~ overall_homeless, data = homelessness)
 simple_fit
 
 ```
-
-The first visualization is a scatterplot of CoC regions in Massachusetts with their corresponding number of unhoused folks and number of year-round shelter beds for each year from 2007 to 2022. There appears to be a positive association between the number of overall unhoused folks in a CoC region and the number of beds in that same region. 
-
-The second visualization shows the same scatterplot with a line of best fit. The positive association depicted by the line of best fit indicates that a higher number of unhoused folks in a CoC region corresponds to a higher number of year-round beds in that region. [DESCRIBE linear REGRESSION RESULTS]
+[DESCRIBE MULTIPLE REGRESSION RESULTS]
 
 [ADD MODEL SUMMARY]
+
 
 ```{r, examine-relationship-with-controls}
 #add coc_category 
@@ -289,7 +294,20 @@ homelessness <- homelessness |>
 mult_fit <- lm(total_yr_beds ~ overall_homeless + year + coc_category, data = homelessness)
 mult_fit
 ```
-[DESCRIBE MULTIPLE REGRESSION RESULTS]
-
-[ADD MODEL SUMMARY]
+```{r, boston-unsheltered trend}
+boston_PIT_count_over_time <- PIT_count |>
+  group_by(year) |>
+  filter(coc_number == "MA-500") |>
+  summarize(state_sheltered_prop = sum(sheltered_homeless)/sum(overall_homeless)*100,
+            state_unsheltered_prop = sum(unsheltered_homeless)/sum(overall_homeless)*100)
+boston_PIT_count_over_time_visual <-ggplot(data = boston_PIT_count_over_time,
+       mapping = aes(x = factor(year),
+                     y = state_unsheltered_prop)) +
+  geom_col(stat="identity", fill="steelblue4") +
+  scale_x_discrete(breaks = seq(2006,2023, 1)) +
+  theme(panel.background = element_rect(fill = 'linen'),
+        panel.grid.major = element_line(color = 'linen'),
+        plot.title = element_text(face="bold")) 
+boston_PIT_count_over_time_visual
+```
 
