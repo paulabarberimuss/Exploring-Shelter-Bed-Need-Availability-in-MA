@@ -1473,6 +1473,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_distill-->
   <script src="index_files/header-attrs-2.25/header-attrs.js"></script>
+  <script src="index_files/kePrint-0.0.1/kePrint.js"></script>
+  <link href="index_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
   <script src="index_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="index_files/popper-2.6.0/popper.min.js"></script>
   <link href="index_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1631,13 +1633,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p><img src="index_files/figure-html5/unsheltered-trend-milestone4-1.png" width="624" /></p>
 </div>
-<h2 id="final-project-exploring-homeless-shelters-responsiveness-to-bed-needs-in-massachusetts">Final Project: Exploring Homeless Shelters’ Responsiveness to Bed Needs in Massachusetts</h2>
+<h2 id="final-project-exploring-homeless-shelters-responsiveness-to-homelessness-prevalence-via-bed-availability-in-massachusetts">Final Project: Exploring Homeless Shelters’ Responsiveness to Homelessness Prevalence via Bed Availability in Massachusetts</h2>
 <h3 id="introduction">Introduction</h3>
-<p>It has been reported repeatedly that America’s homelessness and housing crises are on the rise, but how have homeless shelters changed as a result? Has shelter bed availability risen as well? In this study, I plan to examine how reported shelter bed availability in the United States has changed (or not) as the prevalence of homelessness has changed between the years of 2007 and 2022. Homelessness is incredibly stigmatized in this country and research has shown how discrimination against unhoused people has limited their political, economic, and social rights. A National Homelessness Law Center report found that between 2006 and 2019, city-wide bans on camping increased by more than 90%, and this is just one example of how homelessness is criminalized. Considering the abundance of anti-homelessness attitudes and legislation, I hypothesize that as the prevalence of homelessness has grown, especially in the past decade, shelter bed availability has not increased to the same extent. If I observe that the number of available shelter beds does not increase (remains similar or decreases) when the prevalence of homelessness increases, this would provide support for my hypothesis. If I observe that the number of available shelter beds increases as the prevalence of homelessness increases, this would provide support against my hypothesis.</p>
+<p>The number of folks experiencing homelessness in the state of Massachusetts remains alarmingly high. The Point in Time counts data released by the U.S. Department of Housing and Urban Development reveal that 15,127 folks were estimated as experiencing homelessness during the 2022 point-in-time count. The Former Governor of Massachusetts, Charlie Baker, declared a housing crisis in Massachusetts in 2018 (Sherman, 2019), and the current governor, Maura Healey, declared a state of emergency just a few months ago to respond to the most recent wave of homelessness in the state (Wallack and Willmsen, 2023). Just this past month, shelter providers in Massachusetts announced that their emergency homeless shelters are already overwhelmed this winter season (Jolicoeur, 2023). Some are reportedly already operating over capacity. Amidst these crises, how has homeless shelter bed availability changed in the state? Are homeless shelters operating with the same number of beds they had years ago, or have they added more beds to meet the growing need? In this study, I plan to examine how reported shelter bed availability in the state of Massachusetts has changed (or not) in relation to the prevalence of homelessness from the years of 2007 and 2022. Homelessness is incredibly stigmatized in this country and research has shown how discrimination against unhoused people limits their political, economic, and social rights. A National Homelessness Law Center report found that between 2006 and 2019, city-wide bans on camping increased by more than 90% (Dholakia, 2021), but affordable housing is still an issue. It’s estimated that the state of Massachusetts “needs over 125,000 to 200,000 more housing units to meet demand by 2030” (Siegel and Alston, 2023). Considering the abundance of anti-homelessness attitudes legislation, I hypothesize that as the prevalence of homelessness has grown, especially in the past decade, shelter bed availability has not increased to same extent. More specifically, I do not expect CoCs to have enough beds in relation to their PIT homeless counts (less than 1:1 ratio).</p>
 <h3 id="data">Data</h3>
-<p>The data comes from a merging of two of the Department of Housing and Urban Development (HUD)’s datasets (1) Point in Time and (2) Housing in Time counts for Continuums of Care (CoC) between the years of 2007 and 2022. [CLARIFY point in time and housing in time]. As mentioned earlier, the CoC type is determined and defined by HUD. Through the HUD, different geographic areas in the United States are identified as a particular CoC, which is a regional group that coordinates housing and services funding for unhoused families and individuals as prescribed by the HUD CoC policies. There are different CoC categories, for example, “Largely Rural”, “Major City”, “Largely Suburban” etc. The CoC categories present in Massachusetts are “Major City”, “Largely Suburban”, and “Other Largely Urban.”</p>
-<p>The explanatory variable of interest is the proportion of the population that is considered to be homeless and the outcome variable is the number of available year-round shelter beds for that same year. These variables are self-reported by the CoCs through the HUD’s Homeless Management Information System. [EXPLAIN HOW THEY GET POINT IN TIME COUNTS and housing inventory counts]</p>
-<p>I will be exploring the relationship between the homeless population and available year-round shelter beds through observational data. [specify research design]</p>
+<p>The data comes from a merging of two of the Department of Housing and Urban Development (HUD)’s data sets: (1) Point in Time estimates and (2) Housing Inventory Counts for Continuums of Care (CoC) between the years of 2007 and 2022. The data is filtered for Massachusetts CoCs specifically. Through the HUD, different geographic areas in the United States are identified as a particular CoC (a Continuum of Care), which is a regional group that coordinates housing and services funding for unhoused families and individuals as prescribed by the HUD CoC policies. For example, some of the Massachusetts CoCs are the Boston CoC, Worcester City &amp; County CoC, and Springfield/Hampden County CoC. CoCs are attributed a CoC category, or label of their region type, for example, the Boston CoC is a “Major City CoC” and the Worcester City &amp; County CoC is a “Largely Suburban CoC”. As described by the HUD, the Point in Time (PIT count) is a “count of sheltered and unsheltered people experiencing homelessness on a single night in January” conducted by each CoC. Similarly, the Housing Inventory Count (HIC) is point in time inventory by CoC of the beds and units provided to those experiencing homelessness and for permanent housing projects within their CoC. The programs which offer these beds are of the following: Emergency Shelter, Transitional Housing, Rapid Re-housing, Safe Haven, and Permanent Supportive Housing. This study specifically examines the year-round bed count, which encompasses year-round beds provided by emergency shelters, transitional housing, and safe haven programs. Year-round beds include beds that are available on a planned year-round basis (as opposed to seasonal or overflow beds which are available on a temporary basis).</p>
+<p>HIC and PIT estimates are collected on a single night during the last ten days of January by local shelter providers within CoCs and then reported by CoCs to HUD. While the HIC data collection is simpler as it’s just an inventory count, the PIT data collection is more difficult as it entails survey methodology. Shelter providers obtain their sheltered counts (numbers of shelter guests) from in-house surveying, but unsheltered counts entail volunteers and outreach workers traveling far throughout their communities to survey all areas including homeless encampments.</p>
+<p>The explanatory variable of interest is the overall homeless count in a MA CoC and the outcome variable is the number of year-round shelter beds for the corresponding MA CoC. In this study, I will be exploring the relationship between the homeless population and year-round shelter bed availability for MA CoCs. The implemented research design is cross-sectional as it is comparing the outcome variable by Massachusetts CoCs.</p>
 <h4 id="preparing-the-data">Preparing the data</h4>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1674,11 +1676,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 </div>
 <h3 id="visualizing-the-independent-coc-homeless-count-and-dependent-coc-year-round-shelter-bed-count-variables">Visualizing the Independent (CoC Homeless Count) and Dependent (CoC Year-Round Shelter Bed Count) Variables</h3>
-<p><strong>I. CoC Homeless Count</strong>
-In the chart below, we see that the percent of unhoused folks that are unsheltered has varied over time. Though it appeared to be decreasing since 2007, there’s been a noticeable increase since the onset of the Covid-19 pandemic in the US in 2020. This variability motivates the question of whether shelter bed availability is responsive to need, based on the prevalence of homelessness.</p>
+<p><strong>I. CoC Homeless Count</strong></p>
+<p>In the bar chart below, we see that the percent of unhoused folks that are unsheltered has varied over time. Though it appeared to be decreasing since 2007, there’s been a noticeable increase since the onset of the Covid-19 pandemic in the US in 2020. This variability motivates the question of whether shelter bed availability is responsive to need, based on the prevalence of homelessness.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#visualize over unsheltered trend over time</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#visualize over unsheltered trend over time for MA CoCs</span></span>
 <span><span class='va'>PIT_count_over_time</span> <span class='op'>&lt;-</span> <span class='va'>PIT_count</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>year</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>state_sheltered_prop <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>sheltered_homeless</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>overall_homeless</span><span class='op'>)</span><span class='op'>*</span><span class='fl'>100</span>,</span>
@@ -1702,25 +1704,39 @@ In the chart below, we see that the percent of unhoused folks that are unshelter
 </div>
 <p><img src="index_files/figure-html5/unsheltered-trend-1.png" width="624" /></p>
 </div>
-<p>[make some observation about the next bar plot about beds]</p>
-<p>[insert bar plot of the number of beds total in MA over time]</p>
+<p><strong>II. CoC Year-Round Shelter Bed Count</strong></p>
+<p>From the bar chart below, it appears that the number of year-round shelter beds for MA CoCs varies over time and seems to generally increase slightly over time. There do not appear to be any dramatic changes in year-round shelter beds for MA CoCs.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#visualize Massachusetts CoC year-round beds</span></span>
-<span><span class='va'>HIC_yr_visual</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>HIC_count</span>,</span>
+<span><span class='va'>HIC_yr_count</span> <span class='op'>&lt;-</span> <span class='va'>HIC_count</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>year</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>yr_bed_state_sum <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>total_yr_beds</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>HIC_yr_visual</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>HIC_yr_count</span>,</span>
 <span>       mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>year</span><span class='op'>)</span>,</span>
-<span>                     y <span class='op'>=</span> <span class='va'>total_yr_beds</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>                     y <span class='op'>=</span> <span class='va'>yr_bed_state_sum</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span>fill<span class='op'>=</span><span class='st'>"steelblue4"</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/lims.html'>ylim</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>20000</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_discrete.html'>scale_x_discrete</a></span><span class='op'>(</span>breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>2006</span>,<span class='fl'>2023</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span> </span>
-<span><span class='va'>HIC_yr_visual</span> </span></code></pre>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_discrete.html'>scale_x_discrete</a></span><span class='op'>(</span>breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>2006</span>,<span class='fl'>2023</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>'linen'</span><span class='op'>)</span>,</span>
+<span>        panel.grid.major <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_line</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>'linen'</span><span class='op'>)</span>,</span>
+<span>        plot.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>face<span class='op'>=</span><span class='st'>"bold"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    x <span class='op'>=</span> <span class='st'>"Year"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Number Year-Round Shelter Beds"</span>,</span>
+<span>    title <span class='op'>=</span> <span class='st'>"Number of Year-Round Shelter Beds in Massachusetts"</span>,</span>
+<span>    subtitle <span class='op'>=</span> <span class='st'>"Among MA HUD Continuums of Care from 2007-2022"</span>,</span>
+<span>    source <span class='op'>=</span> <span class='st'>"HUD Housing Inventory Count"</span></span>
+<span>  <span class='op'>)</span></span>
+<span><span class='va'>HIC_yr_visual</span></span></code></pre>
 </div>
 <p><img src="index_files/figure-html5/massachusetts_yr_bed_trend-1.png" width="624" /></p>
 </div>
 <h2 id="results">Results</h2>
-<p>The first visualization is a scatterplot of CoC regions in Massachusetts with their corresponding number of unhoused folks and number of year-round shelter beds for each year from 2007 to 2022. There appears to be a positive association between the number of overall unhoused folks in a CoC region and the number of beds in that same region.</p>
-<p>The second visualization shows the same scatterplot with a line of best fit. The positive association depicted by the line of best fit indicates that a higher number of unhoused folks in a CoC region corresponds to a higher number of year-round beds in that region. [DESCRIBE linear REGRESSION RESULTS]</p>
-<p>[ADD MODEL SUMMARY]</p>
+<p><strong>Main Variable Regression</strong></p>
+<p>The first visualization is a scatter plot of CoC regions in Massachusetts with their corresponding number of unhoused folks and number of year-round shelter beds for each year from 2007 to 2022. There appears to be a positive association between the number of overall unhoused folks in a CoC region and the number of beds in that same region. The second visualization shows the same scatter plot with a line of best fit. The positive association depicted by the line of best fit indicates that a higher number of unhoused folks in a CoC region corresponds to a higher number of year-round beds in that region.</p>
+<p>The table below is based on a linear regression of the PIT homeless counts and number of year_round shelter beds in MA CoCs from 2007-2022. The linear regression model indicates that if the PIT homeless count was zero in a MA CoC, there would be approximately negative 11 beds in that CoC. This intercept value does not make sense in the real world, however we can interpret the Homeless PIT Count coefficient. The Homeless PIT Count coefficient is 0.826 which indicates that for every additional unhoused person that is counted by a CoC, there is an expected 0.826 increase in the number of beds in the CoC. The p-value for this coefficient is less than .001, which makes this coefficient value statistically significant. The Homeless PIT Count coefficient being less than one indicates that local providers may not be meeting bed demand. Other variables may be affecting the bed count, so we will now conduct a multiple linear regression to control for more variables that may be affecting the outcome variable.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#create merged dataframe for PIT and HIC datasets by matching CoC</span></span>
@@ -1774,9 +1790,88 @@ lm(formula = total_yr_beds ~ overall_homeless, data = homelessness)
 Coefficients:
      (Intercept)  overall_homeless  
         -10.5031            0.8261  </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#model summary for linear regression</span></span>
+<span><span class='va'>var_labels</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
+<span><span class='st'>"(Intercept)"</span> <span class='op'>=</span> <span class='st'>"Intercept"</span>,</span>
+<span><span class='st'>"overall_homeless"</span> <span class='op'>=</span> <span class='st'>"MA CoC Homeless PIT Count"</span></span>
+<span><span class='op'>)</span></span>
+<span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>simple_fit</span>,</span>
+<span>                           statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
+<span>                                         <span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
+<span>                           coef_map <span class='op'>=</span> <span class='va'>var_labels</span>,</span>
+<span>                           gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"noba"</span>, <span class='st'>"r,squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<p>[DESCRIBE MULTIPLE REGRESSION RESULTS]</p>
-<p>[ADD MODEL SUMMARY]</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+ (1)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Intercept
+</td>
+<td style="text-align:center;">
+−10.503
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 69.178
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.879
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MA CoC Homeless PIT Count
+</td>
+<td style="text-align:center;">
+0.826
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.032
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1.5px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1.5px">
+p = &lt;0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.768
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Multiple Regression</strong></p>
+<p>The table below is based on a multiple linear regression of the PIT homeless counts and number of year-round shelter beds in MA CoCs from 2007-2022 and controls for year and CoC category. The regression model indicates that if the PIT homeless count was zero in a MA CoC, there would be approximately negative 71270 beds in that CoC. Again, this intercept value does not make sense in the real world, but we can interpret the variable coefficients. The Homeless PIT Count coefficient is 0.411 which indicates that for every additional unhoused person that is counted by a CoC, there is an expected 0.411 increase in the number of beds in the CoC, controlling for year and CoC category. Notably, when we control for year and CoC category, the homeless PIT count coefficient is smaller. The p-value for this coefficient is less than .001, which makes this coefficient value statistically significant. The Homeless PIT Count coefficient being less than half of the previous coefficient provides further evidence that local providers are not meeting bed demand (which should be 1:1 if demand was to be fully met).</p>
+<p>The Year and Major City CoC coefficients are both positive and statistically significant (p-values less than .001). This indicates that 1. as time passes, it’s more likely for there to be more year-round shelter beds and 2. Major City CoCs tend to have more year-round shelter beds. The Other Largely Urban CoC coefficient was not found to be statistically significant.</p>
+<p>Overall, while the analysis of both regression models indicate a relationship between these variables, we do not have sufficient evidence to interpret these results causally given that there was no treatment, control, or randomization. There could be confounding variables, thus further research is required to determine causality.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#add coc_category </span></span>
@@ -1816,26 +1911,155 @@ Coefficients:
                           3.141e+03  
 coc_categoryOther Largely Urban CoC  
                          -1.307e+02  </code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>boston_PIT_count_over_time</span> <span class='op'>&lt;-</span> <span class='va'>PIT_count</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>year</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>coc_number</span> <span class='op'>==</span> <span class='st'>"MA-500"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>state_sheltered_prop <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>sheltered_homeless</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>overall_homeless</span><span class='op'>)</span><span class='op'>*</span><span class='fl'>100</span>,</span>
-<span>            state_unsheltered_prop <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>unsheltered_homeless</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>overall_homeless</span><span class='op'>)</span><span class='op'>*</span><span class='fl'>100</span><span class='op'>)</span></span>
-<span><span class='va'>boston_PIT_count_over_time_visual</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>boston_PIT_count_over_time</span>,</span>
-<span>       mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>year</span><span class='op'>)</span>,</span>
-<span>                     y <span class='op'>=</span> <span class='va'>state_unsheltered_prop</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span>stat<span class='op'>=</span><span class='st'>"identity"</span>, fill<span class='op'>=</span><span class='st'>"steelblue4"</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_discrete.html'>scale_x_discrete</a></span><span class='op'>(</span>breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>2006</span>,<span class='fl'>2023</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>'linen'</span><span class='op'>)</span>,</span>
-<span>        panel.grid.major <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_line</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>'linen'</span><span class='op'>)</span>,</span>
-<span>        plot.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>face<span class='op'>=</span><span class='st'>"bold"</span><span class='op'>)</span><span class='op'>)</span> </span>
-<span><span class='va'>boston_PIT_count_over_time_visual</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#model summary for multiple linear regression</span></span>
+<span><span class='va'>var_labels_2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
+<span><span class='st'>"(Intercept)"</span> <span class='op'>=</span> <span class='st'>"Intercept"</span>,</span>
+<span><span class='st'>"overall_homeless"</span> <span class='op'>=</span> <span class='st'>"MA CoC Homeless PIT Count"</span>,</span>
+<span><span class='st'>"year"</span> <span class='op'>=</span> <span class='st'>"Year"</span>,</span>
+<span><span class='st'>"coc_categoryMajor City CoC"</span> <span class='op'>=</span> <span class='st'>"Major City CoC"</span>,</span>
+<span><span class='st'>"coc_categoryOther Largely Urban CoC"</span> <span class='op'>=</span> <span class='st'>"Other Largely Urban CoC"</span></span>
+<span><span class='op'>)</span></span>
+<span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/modelsummary/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>mult_fit</span>,</span>
+<span>                           statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
+<span>                                         <span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
+<span>                           coef_map <span class='op'>=</span> <span class='va'>var_labels_2</span>,</span>
+<span>                           gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"noba"</span>, <span class='st'>"r,squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="index_files/figure-html5/boston-unsheltered%20trend-1.png" width="624" /></p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+ (1)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Intercept
+</td>
+<td style="text-align:center;">
+−71270.385
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 15427.589
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = &lt;0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MA CoC Homeless PIT Count
+</td>
+<td style="text-align:center;">
+0.411
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.034
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = &lt;0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Year
+</td>
+<td style="text-align:center;">
+35.540
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 7.660
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = &lt;0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Major City CoC
+</td>
+<td style="text-align:center;">
+3141.180
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 200.332
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = &lt;0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Other Largely Urban CoC
+</td>
+<td style="text-align:center;">
+−130.679
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 129.273
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1.5px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1.5px">
+p = 0.313
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.902
+</td>
+</tr>
+</tbody>
+</table>
 </div>
+<h2 id="conclusion">Conclusion</h2>
+<p>My analysis suggests that MA CoCs are not meeting the demand for year-round shelter beds in relation their communities’ homeless counts. These results were largely statistically significant for both regression models. In fact, controlling for other factors like year and CoC category makes this unresponsiveness to homeless counts more apparent. Limitations to this analysis include some missing data (some MA CoCs were removed in this analysis due to missing data). Also, seasonal and overflow emergency bed counts were not taken into account which means that some responsiveness to need was not factored into this analysis and underestimates shelter work. Further research is necessary to better determine the nature of the relationship between homeless counts and shelter bed availability among CoCs. To improve this analysis, I would take into account these other types of shelter beds.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
