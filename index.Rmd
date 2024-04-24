@@ -1,128 +1,13 @@
 ---
-title: "Gov 50 Final Project"
+title: "Exploring Homeless Shelter Responsiveness to Homelessness Prevalence via Bed Availability in Massachusetts Using HUD Point in Time and Housing Inventory Counts"
 author: "Paula Barberi"
-description: "Homelessness and Shelter Bed Availability in MA"
+description: "December 2023"
 output:
   distill::distill_article:
     self_contained: false
 ---
 
-
-
-## Final Project Milestone 1: Project Thoughts
-
-I am interested in exploring data related to emergency homeless shelters in Boston, MA or a city in my home state of Michigan. More specifically, I'd like to examine the relationship between demographic factors like gender and age with utilization of the shelter and how that compares with the published demographic data of those experiencing homelessness in the area. I'd heard that the numbers of young adults experiencing homelessness in my hometown is increasing, but at the same time, there are no young adult homeless shelters that I know of. In Cambridge/Boston, there are only a few shelters that specifically serve young adults. I may need to shift my questions as I figure out what data is publicly accessible, but at the very least I know the topics I would like to research more. 
-
-## Final Project Milestone 2: Project Proposal
-
-It has been reported repeatedly that America's homelessness and housing crises are on the rise, but how have homeless shelters changed as a result? Has shelter bed availability risen as well? In this study, I plan to examine how reported shelter bed availability in the United States has changed (or not) as the prevalence of homelessness has changed between the years of 2007 and 2022. Homelessness is incredibly stigmatized in this country and research has shown how discrimination against unhoused people has limited their political, economic, and social rights. A National Homelessness Law Center report found that between 2006 and 2019, city-wide bans on camping increased by more than 90%, and this is just one example of how homelessness is criminalized. Considering the abundance of anti-homelessness attitudes and legislation, I hypothesize that as the prevalence of homelessness has grown, especially in the past decade, shelter bed availability has not increased to the same extent. 
-
-I still need to select a particular CoC type for my unit of analysis. Through the Department of Housing and Urban Development (HUD), different geographic areas in the United States are identified as a particular CoC (a Continuum of Care), which is a regional group that coordinates housing and services funding for unhoused families and individuals as prescribed by the HUD CoC policies. There are different CoC types, for example, "Largely Rural", "Major City", "Largely Suburban" etc. The explanatory variable of interest is the proportion of the population that is considered to be homeless and the outcome variable is the number of available shelter beds for that same year. This data will come from a merging of two of HUD's datasets focusing on Point in Time and Housing in Time counts for CoCs between the years of 2007 and 2022. As mentioned earlier, the CoC type is determined and defined by HUD. If I observe that the number of available shelter beds does not increase (remains similar or decreases) when the prevalence of homelessness increases, this would provide support for my hypothesis. If I observe that the number of available shelter beds increases as the prevalence of homelessness increases, this would provide support against my hypothesis. 
-
-## Final Project Milestone 3: Data Visualization
-```{r, background}
-#load PIT data
-library(readxl)
-unhoused <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx")
-library(tidyverse)
-library(ggplot2)
-```
-
-
-
-```{r, datavisualization}
-#rename variable
-unhoused1 <- unhoused |>
-  mutate(coc_category = `CoC Category`,
-         overall_homeless_2022 = `Overall Homeless, 2022`,
-         es_homeless_2022 = `Sheltered ES Homeless, 2022`,
-         prop_es_overall_homeless_2022 = `Sheltered ES Homeless, 2022`/`Overall Homeless, 2022`)
-
-#find unique CoC categories
-unique(unhoused1$coc_category)
-
-#group data
-unhoused2 <- unhoused1 |>
-  filter(!is.na(coc_category)) |>
-  group_by(coc_category) |>
-  summarize(avg_prop_es_overall = mean(prop_es_overall_homeless_2022, na.rm = TRUE)) 
-
-#wrangle data
-unhoused2_visual <- unhoused2 |>
-  ggplot(mapping = aes(x = coc_category, y = avg_prop_es_overall, fill=coc_category)) +
-  geom_col() +
-  scale_fill_discrete() +
-  ylim(0,1) +
-  theme(axis.text.x = element_text(size = 7)) +
-  labs(x = "HUD CoC Category",
-       y = "Avg. Proportion of Unhoused in ES",
-       title = "Average Proportion of Unhoused Folks in U.S.Emergency Shelters by CoC in 2022",
-       caption = "Data from HUD 2022 Point in Time Counts")
-unhoused2_visual
-```
-
-## Final Project Milestone 4: Data Visualization
-```{r, data-prep-milestone4}
-library(tidyverse)
-library(ggplot2)
-library("readxl")
-library(RColorBrewer)
-
-#create dataframe for PIT Counts dataset
-PIT_count <- read_excel("~/Downloads/2007-2022-PIT-Counts-by-CoC.xlsx", sheet = 18)
-
-#create dataframe for HIC Counts dataset
-HIC_count <- read_excel("~/Downloads/2007-2022-HIC-Counts-by-CoC.xlsx", sheet = 17)
-
-```
-
-The boxplot below shows that among Massachusetts Continuums of Care (CoCs) the percentage of *unsheltered* unhoused folks has varied from 2007 to 2022. Notably, it appears it has been increasing the past few years since the onset of Covid-19 in the United States. With this context, the question of the relationship between shelter bed availability and prevalence of homelessness is an interesting and important one to explore. 
-
-```{r, unsheltered-trend-milestone4}
-#mutate PIT_count variable names (remove spaces)
-PIT_count <- PIT_count |>
-  mutate(year = Year,
-         coc_number = `CoC Number`,
-         overall_homeless = `Overall Homeless`,
-         sheltered_homeless = `Sheltered Homeless`,
-         unsheltered_homeless = `Unsheltered Homeless`,
-         sheltered_es_homeless = `Sheltered ES Homeless`,
-         sheltered_th_homeless = `Sheltered TH Homeless`,
-         `Sheltered SH Homeless` = `Sheltered SH Homeless`,
-         prop_sheltered_homeless = `Sheltered Homeless`/`Overall Homeless`,
-         prop_unsheltered_homeless = `Unsheltered Homeless`/`Overall Homeless`)
-
-#mutate HIC_count variable names
-HIC_count <- HIC_count |>
-  mutate(year = Year,
-         coc_number = `CoC Number`,
-         total_yr_beds = `Total Year-Round Beds (ES,TH)`,
-         total_yr_es_beds = `Total Year-Round Beds (ES)`)
-
-#visualize over unsheltered trend over time
-PIT_count_over_time <- PIT_count |>
-  group_by(year) |>
-  summarize(state_sheltered_prop = sum(sheltered_homeless)/sum(overall_homeless)*100,
-            state_unsheltered_prop = sum(unsheltered_homeless)/sum(overall_homeless)*100)
-PIT_count_over_time_visual <-ggplot(data = PIT_count_over_time,
-       mapping = aes(x = factor(year),
-                     y = state_unsheltered_prop)) +
-  geom_col(stat="identity", fill="steelblue4") +
-  scale_x_discrete(breaks = seq(2006,2023, 1)) +
-  theme(panel.background = element_rect(fill = 'linen'),
-        panel.grid.major = element_line(color = 'linen'),
-        plot.title = element_text(face="bold")) + 
-  labs(
-    x = "Year",
-    y = "Percent of Unhoused that are Unsheltered (%)",
-    title = "Percent of Unhoused Folks that are Unsheltered in Massachusetts",
-    subtitle = "Among MA HUD Continuums of Care from 2007-2022",
-    source = "HUD Housing Inventory Count"
-  )
-PIT_count_over_time_visual
-```
-
-## Final Project: Exploring Homeless Shelters' Responsiveness to Homelessness Prevalence via Bed Availability in Massachusetts
+## Exploring Homeless Shelter Responsiveness to Homelessness Prevalence via Bed Availability in Massachusetts 
 
 ### Introduction
 The number of folks experiencing homelessness in the state of Massachusetts remains alarmingly high. The Point in Time counts data released by the U.S. Department of Housing and Urban Development reveal that 15,127 folks were estimated as experiencing homelessness during the 2022 point-in-time count. The Former Governor of Massachusetts, Charlie Baker, declared a housing crisis in Massachusetts in 2018 (Sherman, 2019), and the current governor, Maura Healey, declared a state of emergency just a few months ago to respond to the most recent wave of homelessness in the state (Wallack and Willmsen, 2023). Just this past month, shelter providers in Massachusetts announced that their emergency homeless shelters are already overwhelmed this winter season (Jolicoeur, 2023). Some are reportedly already operating over capacity. Amidst these crises, how has homeless shelter bed availability changed in the state? Are homeless shelters operating with the same number of beds they had years ago, or have they added more beds to meet the growing need? In this study, I plan to examine how reported shelter bed availability in the state of Massachusetts has changed (or not) in relation to the prevalence of homelessness from the years of 2007 and 2022. Homelessness is incredibly stigmatized in this country and research has shown how discrimination against unhoused people limits their political, economic, and social rights. A National Homelessness Law Center report found that between 2006 and 2019, city-wide bans on camping increased by more than 90% (Dholakia, 2021), but affordable housing is still an issue. It's estimated that the state of Massachusetts "needs over 125,000 to 200,000 more housing units to meet demand by 2030" (Siegel and Alston, 2023). Considering the abundance of anti-homelessness attitudes legislation, I hypothesize that as the prevalence of homelessness has grown, especially in the past decade, shelter bed availability has not increased to same extent. More specifically, I do not expect CoCs to have enough beds in relation to their PIT homeless counts (less than 1:1 ratio).
@@ -346,10 +231,16 @@ My analysis suggests that MA CoCs are not meeting the demand for year-round shel
 
 ## Works Cited
 
-Dholakia, N. (2018, July 7). How the U.S. Criminalizes Homelessness. Vera Institute of Justice. https://www.vera.org/news/how-the-u-s-criminalizes-homelessness
-Johnson, B. (2023, September 15). Number of older adults facing homelessness on the rise in Mass. WCVB. https://www.wcvb.com/article/number-of-older-adults-facing-homelessness-on-the-rise-in-massachusetts/45128299
-Jolicouer, L. (2023, November 20). With adult shelters in Mass. Overflowing, advocates worry about winter. https://www.wbur.org/news/2023/11/20/massachusetts-adult-homeless-shelters-full-capacity
-Sherman, E. (n.d.). Affordable housing crisis in Massachusetts contributing to homelessness. Fall River Herald News. Retrieved December 13, 2023, from https://www.heraldnews.com/story/news/2019/02/11/affordable-housing-crisis-in-massachusetts/6033543007/
-Siegel, J., & Alston, P. (2023, June 27). Can social housing help solve the Mass. Housing crisis? GBH. https://www.wgbh.org/news/local/2023-06-27/can-social-housing-help-solve-the-mass-housing-crisis
-U.S. Department of Housing and Urban Development (HUD). (2023a). 2007—2022 Housing Inventory Count by CoC. https://www.hudexchange.info/resource/3031/pit-and-hic-data-since-2007/
-U.S. Department of Housing and Urban Development (HUD). (2023b). 2007—2022 Point in Time Estimates by CoC. https://www.hudexchange.info/resource/3031/pit-and-hic-data-since-2007/
+- Dholakia, N. (2018, July 7). How the U.S. Criminalizes Homelessness. Vera Institute of Justice. https://www.vera.org/news/how-the-u-s-criminalizes-homelessness
+
+- Johnson, B. (2023, September 15). Number of older adults facing homelessness on the rise in Mass. WCVB. https://www.wcvb.com/article/number-of-older-adults-facing-homelessness-on-the-rise-in-massachusetts/45128299
+
+- Jolicouer, L. (2023, November 20). With adult shelters in Mass. Overflowing, advocates worry about winter. https://www.wbur.org/news/2023/11/20/massachusetts-adult-homeless-shelters-full-capacity
+
+- Sherman, E. (n.d.). Affordable housing crisis in Massachusetts contributing to homelessness. Fall River Herald News. Retrieved December 13, 2023, from https://www.heraldnews.com/story/news/2019/02/11/affordable-housing-crisis-in-massachusetts/6033543007/
+
+- Siegel, J., & Alston, P. (2023, June 27). Can social housing help solve the Mass. Housing crisis? GBH. https://www.wgbh.org/news/local/2023-06-27/can-social-housing-help-solve-the-mass-housing-crisis
+
+- U.S. Department of Housing and Urban Development (HUD). (2023a). 2007—2022 Housing Inventory Count by CoC. https://www.hudexchange.info/resource/3031/pit-and-hic-data-since-2007/
+
+- U.S. Department of Housing and Urban Development (HUD). (2023b). 2007—2022 Point in Time Estimates by CoC. https://www.hudexchange.info/resource/3031/pit-and-hic-data-since-2007/
